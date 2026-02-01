@@ -10,7 +10,7 @@ setup(
     description="A declarative Python library built on top of pandas with human-readable function names",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/easy_pandas",
+    url="https://github.com/talamann/easy_pandas",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",
