@@ -1,9 +1,9 @@
 """
-Basic usage examples for easy_pandas
+Basic usage examples for ActivePandasQuery
 Demonstrates core functionality with practical examples
 """
 
-from easy_pandas import EasyDataFrame
+from active_pandas_query import EasyDataFrame
 import pandas as pd
 
 
@@ -278,7 +278,7 @@ def example_pandas_compatibility():
     print("\n\nUse pandas describe():")
     print(df.describe())
     
-    # Mix easy_pandas and pandas operations
+    # Mix ActivePandasQuery and pandas operations
     print("\n\nMix operations: Easy filter + pandas head(2):")
     result = df.filter_age_greaterthan_25().head(2)
     print(result)

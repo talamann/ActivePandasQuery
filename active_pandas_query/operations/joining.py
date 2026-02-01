@@ -1,5 +1,5 @@
 """
-Joining operations for easy_pandas
+Joining operations for ActivePandasQuery
 Handles all join/merge operations
 """
 

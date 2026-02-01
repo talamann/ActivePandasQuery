@@ -1,5 +1,5 @@
 """
-Function name parser for easy_pandas
+Function name parser for ActivePandasQuery
 Tokenizes and parses human-readable function names into operation dictionaries
 """
 
@@ -189,7 +189,7 @@ class FunctionNameParser:
         
         value_str = '_'.join(tokens)
         
-        # Try to convert to number
+        
         try:
             if '.' in value_str:
                 return float(value_str)
@@ -197,13 +197,13 @@ class FunctionNameParser:
         except ValueError:
             pass
         
-        # Check for boolean
+        
         if value_str in ('true', 'yes'):
             return True
         if value_str in ('false', 'no'):
             return False
         
-        # Return as string
+       
         return value_str
     
     @classmethod

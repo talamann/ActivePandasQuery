@@ -1,5 +1,5 @@
 """
-Operations module for easy_pandas
+Operations module for ActivePandasQuery
 Contains handlers for different types of data operations
 """
 

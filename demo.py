@@ -1,8 +1,8 @@
 """
-Quick demonstration of easy_pandas library
+Quick demonstration of ActivePandasQuery library
 """
 
-from easy_pandas import EasyDataFrame
+from active_pandas_query import EasyDataFrame
 
 print("=" * 70)
 print("EASY PANDAS - Quick Demo")

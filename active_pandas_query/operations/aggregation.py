@@ -1,5 +1,5 @@
 """
-Aggregation operations for easy_pandas
+Aggregation operations for ActivePandasQuery
 Handles all aggregation and groupby operations
 """
 

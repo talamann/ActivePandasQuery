@@ -1,5 +1,5 @@
 """
-Sorting operations for easy_pandas
+Sorting operations for ActivePandasQuery
 Handles all sort-related operations
 """
 

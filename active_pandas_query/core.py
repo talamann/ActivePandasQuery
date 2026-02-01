@@ -1,5 +1,5 @@
 """
-Core module for easy_pandas
+Core module for ActivePandasQuery
 Contains the main EasyDataFrame class
 """
 

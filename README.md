@@ -5,21 +5,21 @@ A declarative Python library built on top of pandas that uses human-readable fun
 ## Installation
 
 ```bash
-pip install easy_pandas
+pip install ActivePandasQuery
 ```
 
 Or install from source:
 
 ```bash
-git clone https://github.com/yourusername/easy_pandas.git
-cd easy_pandas
+git clone https://github.com/talamann/ActivePandasQuery.git
+cd ActivePandasQuery
 pip install -e .
 ```
 
 ## Quick Start
 
 ```python
-from easy_pandas import EasyDataFrame
+from active_pandas_query import EasyDataFrame
 import pandas as pd
 
 # Create an EasyDataFrame from a regular pandas DataFrame

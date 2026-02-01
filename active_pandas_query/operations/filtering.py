@@ -1,5 +1,5 @@
 """
-Filtering operations for easy_pandas
+Filtering operations for ActivePandasQuery
 Handles all filter-related operations
 """
 

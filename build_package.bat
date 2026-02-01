@@ -1,5 +1,5 @@
 @echo off
-REM Quick setup script for publishing easy_pandas to PyPI
+REM Quick setup script for publishing ActivePandasQuery to PyPI
 
 echo ========================================
 echo Easy Pandas - PyPI Publishing Setup
@@ -13,7 +13,7 @@ echo.
 echo Step 2: Cleaning previous builds...
 if exist build rmdir /s /q build
 if exist dist rmdir /s /q dist
-if exist easy_pandas.egg-info rmdir /s /q easy_pandas.egg-info
+if exist ActivePandasQuery.egg-info rmdir /s /q ActivePandasQuery.egg-info
 echo.
 
 echo Step 3: Building the package...

@@ -1,5 +1,5 @@
 """
-Transformation operations for easy_pandas
+Transformation operations for ActivePandasQuery
 Handles column selection, renaming, and other transformations
 """
 
