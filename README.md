@@ -1,4 +1,4 @@
-# Easy Pandas
+# ActivePandasQuery
 
 A declarative Python library built on top of pandas that uses human-readable function names to perform data operations. Inspired by ActiveQuery patterns in PHP, Easy Pandas makes data manipulation more intuitive and expressive.
 
