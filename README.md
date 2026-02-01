@@ -11,7 +11,7 @@ pip install easy_pandas
 Or install from source:
 
 ```bash
-git clone https://github.com/yourusername/easy_pandas.git
+git clone https://github.com/talamann/easy_pandas.git
 cd easy_pandas
 pip install -e .
 ```
