@@ -53,6 +53,14 @@ print("\n\n📈 Example 8: Aggregation - Average age")
 avg_age = df.aggregate_age_mean()
 print(f"Average Age: {avg_age:.1f} years")
 
+
+print("\n\n✅ Example 9: Selecting Age and Name based on condition of age or name")
+name = df.filter_name_startswith_a().select_name_age()
+age = df.filter_age_startswith_2().select_name_age()
+
+print(name)
+print(age)
+
 print("\n\n" + "=" * 70)
 print("✅ All examples completed successfully!")
 print("=" * 70)

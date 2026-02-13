@@ -34,7 +34,7 @@ class EasyDataFrame:
         elif isinstance(data, EasyDataFrame):
             self._df = data._df.copy()
         else:
-            self._df = pd.DataFrame(data, **kwargs)
+            self._df = pd.DataFrame(data, **kwargs).applymap(lambda x: x.lower() if isinstance(x, str) else x).copy()
     
     def __getattr__(self, name: str) -> Any:
         """

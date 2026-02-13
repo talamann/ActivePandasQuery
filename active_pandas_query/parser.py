@@ -145,7 +145,7 @@ class FunctionNameParser:
                 # Value is everything after the operator
                 value_tokens = tokens[i+1:]
                 value = cls._parse_value(value_tokens)
-                
+
                 return {
                     'column': column,
                     'operator': operator,
@@ -188,7 +188,6 @@ class FunctionNameParser:
             return None
         
         value_str = '_'.join(tokens)
-        
         
         try:
             if '.' in value_str:
