@@ -74,7 +74,12 @@ class FilterOperations:
         elif operator == 'contains':
             return col_data.astype(str).str.contains(str(value), case=False, na=False)
         elif operator == 'startswith':
-            return col_data.astype(str).str.startswith(str(value), na=False)
+            case_sensitive = condition.get('case_sensitive', True)
+            if case_sensitive:
+                return col_data.astype(str).str.startswith(str(value), na=False)
+            else:
+                # Case insensitive - convert both to lowercase
+                return col_data.astype(str).str.lower().str.startswith(str(value).lower(), na=False)
         elif operator == 'endswith':
             return col_data.astype(str).str.endswith(str(value), na=False)
         elif operator == 'isin':

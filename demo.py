@@ -53,6 +53,26 @@ print("\n\n📈 Example 8: Aggregation - Average age")
 avg_age = df.aggregate_age_mean()
 print(f"Average Age: {avg_age:.1f} years")
 
+#case sensitive tests
+
+print("\n\n📈 Example 9:")
+name = df.filter_name_startswith_A().select_name_age()
+print(name)
+
+print("\n\n🔤 Example 10: Case-insensitive startswith (startswith_ci)")
+print("Filter names starting with 'a' (case-insensitive):")
+result = df.filter_name_startswith_ci_a().select_name_age()
+print(result)
+
+print("\n\n🔤 Example 11: Case-sensitive startswith (startswith_cs)")
+print("Filter names starting with 'A' (case-sensitive):")
+result = df.filter_name_startswith_cs_A().select_name_age()
+print(result)
+
+print("\n\n🔤 Example 12: Case-sensitive startswith - lowercase (case-sensitive)")
+print("Filter names starting with 'a' (case-sensitive - should be empty):")
+result = df.filter_name_startswith_cs_a().select_name_age()
+print(result if not result.empty else "No results (correct, since names start with uppercase)")
 print("\n\n" + "=" * 70)
 print("✅ All examples completed successfully!")
 print("=" * 70)

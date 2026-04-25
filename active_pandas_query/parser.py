@@ -42,6 +42,10 @@ class FunctionNameParser:
         'isnull': 'isna',
         'notnull': 'notna'
     }
+    ALPHABETIC = {
+        'cs' : 'case sensitive',
+        'ci' : 'case insensitive'
+    }
     
     # Aggregation functions
     AGGREGATIONS = {
@@ -69,6 +73,8 @@ class FunctionNameParser:
         Returns:
             Dictionary containing operation details
         """
+        # Keep original tokens for value preservation
+        original_tokens = function_name.split('_')
         tokens = function_name.lower().split('_')
         
         if not tokens:
@@ -78,7 +84,7 @@ class FunctionNameParser:
         operation = cls._extract_operation(tokens)
         
         if operation == 'filter':
-            return cls._parse_filter(tokens)
+            return cls._parse_filter(tokens, original_tokens)
         elif operation in ('sort', 'sortby'):
             return cls._parse_sort(tokens)
         elif operation == 'groupby':
@@ -107,7 +113,7 @@ class FunctionNameParser:
         raise ValueError(f"No valid operation found in tokens: {tokens}")
     
     @classmethod
-    def _parse_filter(cls, tokens: List[str]) -> Dict[str, Any]:
+    def _parse_filter(cls, tokens: List[str], original_tokens: List[str] = None) -> Dict[str, Any]:
         """Parse filter operations"""
         result = {
             'operation': 'filter',
@@ -117,12 +123,14 @@ class FunctionNameParser:
         
         # Remove 'filter' from tokens
         tokens = [t for t in tokens if t != 'filter']
+        if original_tokens:
+            original_tokens = [t for t in original_tokens if t.lower() != 'filter']
         
         # Split by logical operators
         condition_groups = cls._split_by_logical(tokens)
         
         for group, logic in condition_groups:
-            condition = cls._parse_condition(group)
+            condition = cls._parse_condition(group, original_tokens)
             if condition:
                 result['conditions'].append(condition)
                 if logic:
@@ -131,7 +139,7 @@ class FunctionNameParser:
         return result
     
     @classmethod
-    def _parse_condition(cls, tokens: List[str]) -> Dict[str, Any]:
+    def _parse_condition(cls, tokens: List[str], original_tokens: List[str] = None) -> Dict[str, Any]:
         """Parse a single filter condition"""
         if len(tokens) < 2:
             return {}
@@ -142,15 +150,41 @@ class FunctionNameParser:
         for i, token in enumerate(tokens[1:], 1):
             if token in cls.COMPARISONS:
                 operator = cls.COMPARISONS[token]
-                # Value is everything after the operator
                 value_tokens = tokens[i+1:]
-                value = cls._parse_value(value_tokens)
+                original_value_tokens = None
                 
-                return {
+                # Get original tokens for value if available
+                if original_tokens:
+                    original_value_tokens = original_tokens[i+1:]
+                
+                # Check for case sensitivity modifiers after startswith
+                case_sensitive = None
+                if operator == 'startswith' and value_tokens and value_tokens[0] in ('ci', 'cs'):
+                    if value_tokens[0] == 'ci':
+                        case_sensitive = False
+                    else:  # 'cs'
+                        case_sensitive = True
+                    value_tokens = value_tokens[1:]  # Remove the modifier from value tokens
+                    if original_value_tokens:
+                        original_value_tokens = original_value_tokens[1:]
+                
+                # Use original tokens for value preservation for startswith (backward compatible)
+                if operator == 'startswith' and original_value_tokens is not None:
+                    value = cls._parse_value(original_value_tokens)
+                else:
+                    value = cls._parse_value(value_tokens)
+                
+                condition = {
                     'column': column,
                     'operator': operator,
                     'value': value
                 }
+                
+                # Add case_sensitive flag if it was specified
+                if case_sensitive is not None:
+                    condition['case_sensitive'] = case_sensitive
+                
+                return condition
         
         # Default to equals if no operator found
         value = cls._parse_value(tokens[1:])
